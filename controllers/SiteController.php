@@ -48,6 +48,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $this->view->params['description'] = 'First " test';
+        $this->view->params['keywords'] = ['Thijs', 'Zumbrink'];
         return $this->render('index');
     }
 

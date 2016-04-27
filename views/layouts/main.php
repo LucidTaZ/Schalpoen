@@ -1,15 +1,20 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-use yii\helpers\Html;
+use app\assets\AppAsset;
+use app\assets\FontAsset;
+use app\widgets\Menu;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+
+/* @var $this View */
+/* @var $content string */
 
 AppAsset::register($this);
+FontAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -19,6 +24,14 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="shortcut icon" href="<?= Html::encode(Yii::$app->params['favicon_uri']) ?>" />
+    <link rel="alternate" type="application/rss+xml" href="/rss" />
+    <?php if (isset($this->params['description'])): ?>
+        <meta name="description" content="<?= Html::encode(str_replace('"', '', $this->params['description'])) ?>" />
+    <?php endif; ?>
+    <?php if (isset($this->params['keywords'])): ?>
+        <meta name="keywords" content="<?= implode(', ', array_map([Html::class, 'encode'], $this->params['keywords'])) ?>" />
+    <?php endif; ?>
     <?php $this->head() ?>
 </head>
 <body>
@@ -54,6 +67,8 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
+    <?= Menu::widget() ?>
+
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -64,9 +79,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; Thijs Zumbrink 2010-<?= date('Y') ?></p>
     </div>
 </footer>
 
