@@ -1,0 +1,333 @@
+$headerColor: #20a035;
+$headerBorderColor: #156b23;
+
+$borderColor: #208c32; // Used for almost everything
+$linkUnderlineColor: #156b23;
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Verdana, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 10pt;
+	text-transform: none;
+	text-decoration: none;
+	letter-spacing: 0em;
+	word-spacing: 0em;
+	line-height: 1.4;
+	color: black;
+	background-image: url(http://static.schalpoen.nl/style/semigray.png);
+}
+
+textarea {
+	font-size: 10pt;
+	font-family: Verdana, Sans-Serif;
+	color: black;
+}
+
+input {
+	font-size: 10pt;
+	font-family: Verdana, Sans-Serif;
+	color: black;
+}
+
+a:hover {
+	color: $linkUnderlineColor;
+	border-bottom: 1px solid $linkUnderlineColor;
+}
+a {
+	color: #000;
+	text-decoration: none;
+	border-bottom: 1px solid $linkUnderlineColor;
+}
+
+td:hover {
+	color: #000;
+	background-color: #ddd;
+}
+td {
+	color: #000;
+	background-color: #eee;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid grey;
+	vertical-align: top;
+	padding: 0.5em;
+}
+th {
+	color: #000;
+	background-color: #eee;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid grey;
+	vertical-align: top;
+	padding: 0.5em;
+}
+
+table {
+	border: 1px solid gray;
+	border-bottom: none;
+	border-right: none;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid $borderColor;
+	height: 1px; // IE...
+}
+
+h1 {
+	font-family: 'Shanti', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-weight: bold;
+	font-size: 28pt;
+	text-transform: none;
+	text-decoration: none;
+	letter-spacing: 0em;
+	word-spacing: 0em;
+	line-height: 1.4;
+}
+
+h2 a {
+	border: none;
+}
+
+h2 {
+	font-family: 'Shanti', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 24pt;
+	text-transform: none;
+	text-decoration: none;
+	letter-spacing: 0em;
+	word-spacing: 0em;
+	line-height: 1.4;
+}
+
+h3 a {
+	border: none;
+}
+
+h3 {
+	font-family: 'Shanti', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18pt;
+	text-transform: none;
+	text-decoration: none;
+	letter-spacing: 0em;
+	word-spacing: 0em;
+	line-height: 1.4;
+}
+
+#header h1 {
+	padding: 0;
+	margin: 0;
+}
+#header {
+	padding: .5em;
+	color: #fff;
+	background-color: $headerColor;
+	border-bottom: 1px solid $headerBorderColor;
+}
+
+#menu p { margin: 0 0 1em 0; }
+#menu {
+	float: left;
+	width: 20em;
+	margin: 0;
+	border-left: none;
+	border-top: none;
+}
+
+#content h2 { margin: 0 0 .5em 0; }
+#content {
+	margin-left: 22em;
+	padding: 1em;
+	max-width: 46em;
+}
+
+#footer a:hover {
+	border-bottom: 1px solid #fff;
+}
+#footer a {
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 1px solid #fff;
+}
+#footer {
+	clear: both;
+	margin: 0;
+	padding: .5em;
+	color: #fff;
+	background-color: $headerColor;
+	border-top: 1px solid $headerBorderColor;
+	border-bottom: 1px solid $headerBorderColor;
+}
+
+#profile {
+	
+}
+
+.forceWidth {
+	// For IE, which doesn't support max-width
+	width: 46em;
+}
+
+.highlight {
+	color: #0c0;
+}
+
+.comment {
+	border: 1px solid $borderColor;
+	margin-bottom: 1em;
+	padding: 0.5em;
+}
+
+.commentReplies {
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.commentReplyForm {
+	padding: 0.5em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.highlightBg {
+	background-color: #dbffe1;
+}
+
+.lowlightBg {
+	background-color: #eaffee;
+}
+
+.mededeling {
+	font-style: italic;
+	background-color: #dbffe1;
+	color: #000;
+	border: 1px solid $borderColor;
+	padding: .5em;
+}
+
+.error {
+	background-color: #f88;
+	border: 1px solid red;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+.shortPost {
+	padding: 1em;
+	padding-top: 0px;
+	padding-left: 0px;
+	margin-bottom: 1em;
+}
+
+.post {
+	font-family: 'Open Sans', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 11pt;
+	text-transform: none;
+	text-decoration: none;
+	letter-spacing: 0em;
+	word-spacing: 0em;
+	line-height: 1.4;
+	color: black;
+}
+
+.longPost {
+	overflow: visible;
+}
+
+.postInteractionArea {
+	margin-top: 1em;
+}
+
+.shortPostPreview img {
+	// IE...
+	display: block;
+	margin: 0px;
+}
+.shortPostPreview {
+	border: 1px solid $borderColor;
+	float: left;
+	padding: 0px;
+	margin: 10px;
+}
+
+.longPostPreview {
+	float: left;
+	margin-right: 1em;
+}
+
+.shortPostText {
+	margin-left: 140px;
+}
+
+.archiveYearHeader {
+	cursor: pointer;
+}
+
+.archiveYearBox {
+	display: none;
+	margin-left: 4em;
+}
+
+.archivePost {
+	margin-bottom: 1em;
+	text-align: center;
+}
+
+.archivePostPreview img {
+	// IE...
+	display: block;
+	margin: 0px;
+}
+.archivePostPreview a img {
+	// IE...
+	border: none;
+}
+.archivePostPreview {
+	border: 1px solid $borderColor;
+	padding: 0px;
+	margin: 10px;
+	display: inline-block;
+	
+	// Needed for IE... (overflow: auto; does not work) Be careful: width is hardcoded here
+	white-space: nowrap;
+	width: 120px;
+}
+
+.archivePostText {
+	
+}
+
+.archivePostTitle {
+	font-weight: bold;
+}
+
+.contentPane {
+	border: 1px solid $borderColor;
+	padding: 1em;
+	background: white;
+}
+
+.disabled {
+	color: grey;
+}
+
+.draft {
+	
+}
+
+.rejected {
+	background-color: #ff8080;
+}
+
+.editor {
+	width: 100%;
+	height: 30em;
+}

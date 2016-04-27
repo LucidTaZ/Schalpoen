@@ -8,6 +8,12 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'nl',
     'components' => [
+        'assetManager' => [
+            'converter' => [
+                // Disable automatic SCSS conversion since we use Leafo\ScssPhp for that during runtime
+                'commands' => [],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'sgA6Id_V3S0dE9IaNr4i3QLLhBGDdXgJ',
