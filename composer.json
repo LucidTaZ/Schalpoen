@@ -11,7 +11,8 @@
         "yiisoft/yii2": ">=2.0.7",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "leafo/scssphp": "^0.6.3"
+        "leafo/scssphp": "^0.6.3",
+        "lucidtaz/yii2-scssphp": "^0.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -19,11 +19,11 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'css/style.php/schalpoen.scss',
     ];
     public $js = [
     ];
     public $depends = [
+        SchalpoenAsset::class,
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];

@@ -10,8 +10,7 @@ $config = [
     'components' => [
         'assetManager' => [
             'converter' => [
-                // Disable automatic SCSS conversion since we use Leafo\ScssPhp for that during runtime
-                'commands' => [],
+                'class' => \lucidtaz\yii2scssphp\ScssAssetConverter::className(),
             ],
         ],
         'request' => [
