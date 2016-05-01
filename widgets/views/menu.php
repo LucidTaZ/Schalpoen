@@ -2,11 +2,14 @@
 
 use app\models\Post;
 use app\models\Tag;
+use yii\helpers\Html;
 use yii\web\View;
 
 /* @var $this View */
 /* @var $recentPosts Post[] */
 /* @var $popularTags Tag[] */
+/* @var $isAuthor bool */
+/* @var $isPublisher bool */
 
 ?>
 <p>
@@ -15,6 +18,7 @@ use yii\web\View;
     <a href="#">RSS</a><br />
 </p>
 
+<?php /*
 <p>
     <!-- TODO: Move into NavBar -->
     <a href="#">Inloggen</a><br />
@@ -27,24 +31,33 @@ use yii\web\View;
     <a href="#">Profiel</a><br />
     <a href="#">Uitloggen</a><br />
 </p>
+*/ ?>
 
-<p>
-    Auteur:<br />
-    <a href="#">Artikel schrijven</a><br />
-    <a href="#">Concepten (x)</a><br />
-</p>
+<?php if ($isAuthor): ?>
+    <p>
+        Auteur:<br />
+        <a href="#">Artikel schrijven</a><br />
+        <a href="#">Concepten (x)</a><br />
+    </p>
+<?php endif; ?>
 
-<p>
-    Redacteur:<br />
-    <a href="#">Publiceren (x)</a><br />
-</p>
+<?php if ($isPublisher): ?>
+    <p>
+        Redacteur:<br />
+        <a href="#">Publiceren (x)</a><br />
+    </p>
+<?php endif; ?>
 
 <p>
     Recente artikelen:<br />
-    ...<br />
+    <?php foreach ($recentPosts as $recentPost): ?>
+        <?= Html::a($recentPost->title, '/post/' . $recentPost->id) /* TODO: Include slug */ ?><br />
+    <?php endforeach; ?>
 </p>
 
 <p>
     Populaire tags:<br />
-    ...<br />
+    <?= implode(', ', array_map(function (Tag $tag) {
+        return Html::a($tag->title, '/tag/' . $tag->id); // TODO: Include slug
+    }, $popularTags)) ?><br />
 </p>
