@@ -12,5 +12,6 @@ class SchalpoenAsset extends AssetBundle
     ];
     public $depends = [
         'yii\bootstrap\BootstrapAsset',
+        FontAsset::class,
     ];
 }

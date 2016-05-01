@@ -1,19 +1,16 @@
 <?php
 
 use app\assets\AppAsset;
-use app\assets\FontAsset;
 use app\widgets\Menu;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\web\View;
-use yii\widgets\Breadcrumbs;
 
 /* @var $this View */
 /* @var $content string */
 
 AppAsset::register($this);
-FontAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
@@ -40,40 +37,42 @@ FontAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Het Schalpoen',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-static-top',
         ],
     ]);
+    if (Yii::$app->user->isGuest) {
+        $items = [['label' => 'Login', 'url' => ['/site/login']]];
+    } else {
+        $items = [
+            '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link']
+            )
+            . Html::endForm()
+            . '</li>'
+        ];
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
+        'items' => $items,
     ]);
     NavBar::end();
     ?>
 
-    <?= Menu::widget() ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="menu" class="col-md-3 contentPane">
+                <?= Menu::widget() ?>
+            </div>
+            <div id="content" class="col-md-9">
+                <?= $content ?>
+            </div>
+        </div>
     </div>
 </div>
 

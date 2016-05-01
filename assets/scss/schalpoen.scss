@@ -2,60 +2,59 @@ $headerColor: #20a035;
 $headerBorderColor: #156b23;
 
 $borderColor: #208c32; // Used for almost everything
-$linkUnderlineColor: #156b23;
+$linkHoverColor: #156b23;
 
-body {
-    margin: 0px;
-    padding: 0px;
-    font-family: Verdana, sans-serif;
+@mixin font($size, $family...) {
+    font-family: $family;
     font-style: normal;
     font-weight: 400;
-    font-size: 10pt;
+    font-size: $size;
     text-transform: none;
     text-decoration: none;
     letter-spacing: 0em;
     word-spacing: 0em;
     line-height: 1.4;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    @include font(10pt, Verdana, sans-serif);
     color: black;
     background-image: url(http://static.schalpoen.nl/style/semigray.png);
 }
 
-textarea {
-    font-size: 10pt;
-    font-family: Verdana, Sans-Serif;
+textarea, input {
+    @include font(10pt, Verdana, sans-serif);
     color: black;
 }
 
-input {
-    font-size: 10pt;
-    font-family: Verdana, Sans-Serif;
-    color: black;
-}
-
-a:hover {
-    color: $linkUnderlineColor;
-    border-bottom: 1px solid $linkUnderlineColor;
-}
 a {
-    color: #000;
+    color: black;
     text-decoration: none;
-    border-bottom: 1px solid $linkUnderlineColor;
+    border-bottom: 1px solid $linkHoverColor;
+
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+        color: $linkHoverColor;
+    }
 }
 
-td:hover {
-    color: #000;
-    background-color: #ddd;
-}
 td {
-    color: #000;
+    color: black;
     background-color: #eee;
     border-bottom: 1px solid gray;
     border-right: 1px solid grey;
     vertical-align: top;
     padding: 0.5em;
+
+    &:hover {
+        color: black;
+        background-color: #ddd;
+    }
 }
 th {
-    color: #000;
+    color: black;
     background-color: #eee;
     border-bottom: 1px solid gray;
     border-right: 1px solid grey;
@@ -76,28 +75,12 @@ hr {
 }
 
 h1 {
-    font-family: 'Shanti', sans-serif;
-    font-style: normal;
-    font-weight: 400;
+    @include font(28pt, 'Shanti', sans-serif);
     font-weight: bold;
-    font-size: 28pt;
-    text-transform: none;
-    text-decoration: none;
-    letter-spacing: 0em;
-    word-spacing: 0em;
-    line-height: 1.4;
 }
 
 h2 {
-    font-family: 'Shanti', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24pt;
-    text-transform: none;
-    text-decoration: none;
-    letter-spacing: 0em;
-    word-spacing: 0em;
-    line-height: 1.4;
+    @include font(24pt, 'Shanti', sans-serif);
 
     a {
         border: none;
@@ -105,37 +88,56 @@ h2 {
 }
 
 h3 {
-    font-family: 'Shanti', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18pt;
-    text-transform: none;
-    text-decoration: none;
-    letter-spacing: 0em;
-    word-spacing: 0em;
-    line-height: 1.4;
+    @include font(18pt, 'Shanti', sans-serif);
 
     a {
         border: none;
     }
 }
 
-#header {
+.navbar {
     padding: .5em;
-    color: #fff;
+    margin-bottom: 0px;
     background-color: $headerColor;
     border-bottom: 1px solid $headerBorderColor;
 
-    h1 {
-        padding: 0;
-        margin: 0;
+    a {
+        border-bottom: none;
+    }
+
+    .navbar-brand {
+        @include font(28pt, 'Shanti', sans-serif);
+        font-weight: bold;
+        color: white;
+        height: auto;
+        padding: 0px;
+    }
+
+    .nav li {
+        a, button {
+            color: white;
+        }
+    }
+
+    .navbar-toggle {
+        border-color: white;
+        background-color: $headerColor;
+        &:hover, &:focus {
+            background-color: $headerColor;
+            .icon-bar {
+                background-color: $headerBorderColor;
+            }
+        }
+    }
+
+    .navbar-nav > .active > a {
+        &, &:focus, &:hover {
+            background-color: $headerColor;
+        }
     }
 }
 
 #menu {
-    float: left;
-    width: 20em;
-    margin: 0;
     border-left: none;
     border-top: none;
 
@@ -145,32 +147,40 @@ h3 {
 }
 
 #content {
-    margin-left: 22em;
     padding: 1em;
-    max-width: 46em;
+    @media (max-width: 992px) {
+        // Remove 15px Bootstrap gutter
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 
     h2 {
         margin: 0 0 .5em 0;
     }
 }
 
-#footer {
+.footer {
+    height: 60px;
     clear: both;
     margin: 0;
     padding: .5em;
-    color: #fff;
+    padding-top: 1.5em;
+    color: white;
     background-color: $headerColor;
     border-top: 1px solid $headerBorderColor;
     border-bottom: 1px solid $headerBorderColor;
 
-    a:hover {
-        border-bottom: 1px solid #fff;
+    a {
+        color: white;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
-    a {
-        color: #fff;
-        text-decoration: none;
-        border-bottom: 1px solid #fff;
+    div p {
+        margin: 0px;
     }
 }
 
@@ -215,7 +225,7 @@ h3 {
 .mededeling {
     font-style: italic;
     background-color: #dbffe1;
-    color: #000;
+    color: black;
     border: 1px solid $borderColor;
     padding: .5em;
 }
@@ -235,15 +245,7 @@ h3 {
 }
 
 .post {
-    font-family: 'Open Sans', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11pt;
-    text-transform: none;
-    text-decoration: none;
-    letter-spacing: 0em;
-    word-spacing: 0em;
-    line-height: 1.4;
+    @include font(11pt, 'Open Sans', sans-serif);
     color: black;
 }
 

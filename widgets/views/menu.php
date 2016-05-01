@@ -10,31 +10,33 @@ use yii\web\View;
 
 ?>
 <p>
-    Home<br />
-    Archief<br />
-    RSS<br />
+    <a href="#">Home</a><br />
+    <a href="#">Archief</a><br />
+    <a href="#">RSS</a><br />
 </p>
 
 <p>
-    Inloggen<br />
-    Registreren<br />
+    <!-- TODO: Move into NavBar -->
+    <a href="#">Inloggen</a><br />
+    <a href="#">Registreren</a><br />
 </p>
 
 <p>
+    <!-- TODO: Move into NavBar -->
     Ingelogd als <...><br />
-    Profiel<br />
-    Uitloggen<br />
+    <a href="#">Profiel</a><br />
+    <a href="#">Uitloggen</a><br />
 </p>
 
 <p>
     Auteur:<br />
-    Artikel schrijven<br />
-    Concepten (x)<br />
+    <a href="#">Artikel schrijven</a><br />
+    <a href="#">Concepten (x)</a><br />
 </p>
 
 <p>
     Redacteur:<br />
-    Publiceren (x)<br />
+    <a href="#">Publiceren (x)</a><br />
 </p>
 
 <p>

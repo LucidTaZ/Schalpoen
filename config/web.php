@@ -9,6 +9,7 @@ $config = [
     'language' => 'nl',
     'components' => [
         'assetManager' => [
+            'forceCopy' => YII_ENV_DEV,
             'converter' => [
                 'class' => \lucidtaz\yii2scssphp\ScssAssetConverter::className(),
             ],
