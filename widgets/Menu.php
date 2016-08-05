@@ -11,24 +11,10 @@ class Menu extends Widget
 {
     public function run()
     {
-        $recentPosts = [
-            new Post([
-                'id' => '4',
-                'author_id' => '1',
-                'title' => 'Debug title',
-                'text' => 'Debug text',
-            ]),
-        ];
-        $popularTags = [
-            new Tag([
-                'id' => 2,
-                'title' => 'Debug1',
-            ]),
-            new Tag([
-                'id' => 3,
-                'title' => 'Debug2',
-            ]),
-        ];
+        $recentPosts = Post::findRecentlyPublished()
+            ->limit(10)
+            ->all();
+        $popularTags = Tag::getPopularTags();
         return $this->render('menu', [
             'recentPosts' => $recentPosts,
             'popularTags' => $popularTags,

@@ -35,7 +35,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'displayName', 'email', 'password', 'created_at'], 'required'],
+            [['username', 'displayName', 'email', 'password'], 'required'],
             [['expose_email', 'notify_replies', 'is_author', 'is_publisher', 'created_at'], 'integer'],
             [['username', 'displayName', 'email', 'auth_key'], 'string', 'max' => 32],
             [['password'], 'string', 'max' => 60],
@@ -59,7 +59,8 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             [
                 'class' => TimestampBehavior::className(),

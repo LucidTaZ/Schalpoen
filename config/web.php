@@ -1,17 +1,20 @@
 <?php
 
+use lucidtaz\yii2scssphp\ScssAssetConverter;
+use yii\web\UrlRule;
+
 $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'nl',
+    'language' => 'nl-NL',
     'components' => [
         'assetManager' => [
             'forceCopy' => YII_ENV_DEV,
             'converter' => [
-                'class' => \lucidtaz\yii2scssphp\ScssAssetConverter::className(),
+                'class' => ScssAssetConverter::className(),
             ],
         ],
         'request' => [
@@ -45,14 +48,13 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => UrlRule::class, 'pattern' => 'post/<id:[\d]+>/<slug:[\-a-zA-Z0-9]+>', 'route' => 'post/view'],
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

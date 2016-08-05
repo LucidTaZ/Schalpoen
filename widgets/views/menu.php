@@ -3,6 +3,7 @@
 use app\models\Post;
 use app\models\Tag;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 /* @var $this View */
@@ -13,7 +14,7 @@ use yii\web\View;
 
 ?>
 <p>
-    <a href="#">Home</a><br />
+    <a href="<?= Url::home() ?>">Home</a><br />
     <a href="#">Archief</a><br />
     <a href="#">RSS</a><br />
 </p>
@@ -51,13 +52,16 @@ use yii\web\View;
 <p>
     Recente artikelen:<br />
     <?php foreach ($recentPosts as $recentPost): ?>
-        <?= Html::a($recentPost->title, '/post/' . $recentPost->id) /* TODO: Include slug */ ?><br />
+        <?= Html::a($recentPost->title, '/post/' . $recentPost->id . '/' . $recentPost->slug) ?><br />
     <?php endforeach; ?>
 </p>
 
 <p>
     Populaire tags:<br />
-    <?= implode(', ', array_map(function (Tag $tag) {
-        return Html::a($tag->title, '/tag/' . $tag->id); // TODO: Include slug
-    }, $popularTags)) ?><br />
+    <?= implode(', ', array_map(
+        function (Tag $tag) {
+            return Html::a($tag->title, '/tag/' . $tag->id . '/' . $tag->slug);
+        },
+        $popularTags
+    )) ?><br />
 </p>

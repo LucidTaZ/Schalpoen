@@ -3,7 +3,9 @@
 namespace app\models;
 
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\helpers\Inflector;
 
 /**
  * This is the model class for table "post".
@@ -17,6 +19,9 @@ use yii\db\ActiveRecord;
  * @property integer $published_at
  * @property integer $created_at
  * @property integer $updated_at
+ *
+ * @property string $slug
+ * @property bool $isPublished
  *
  * @property Comment[] $comments
  * @property User $author
@@ -32,7 +37,8 @@ class Post extends ActiveRecord
     public function rules()
     {
         return [
-            [['author_id', 'created_at'], 'required'],
+            [['author_id', 'title', 'text'], 'required'],
+            [['preview'], 'default', 'value' =>  'schalpoen.png'],
             [['author_id', 'published_at', 'created_at', 'updated_at'], 'integer'],
             [['text'], 'string'],
             [['title'], 'string', 'max' => 128],
@@ -57,10 +63,26 @@ class Post extends ActiveRecord
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             TimestampBehavior::className(),
         ];
+    }
+
+    public function getIsPublished(): bool
+    {
+        return !empty($this->published_at);
+    }
+
+    public function setIsPublished(bool $value)
+    {
+        $this->published_at = $value ? time() : null;
+    }
+
+    public function getSlug(): string
+    {
+        return Inflector::slug($this->title);
     }
 
     public function getComments()
@@ -77,5 +99,15 @@ class Post extends ActiveRecord
     {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
             ->viaTable('posttag', ['post_id' => 'id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public static function findRecentlyPublished()
+    {
+        return static::find()
+            ->where(['not', ['published_at' => null]])
+            ->orderBy(['published_at' => SORT_DESC]);
     }
 }

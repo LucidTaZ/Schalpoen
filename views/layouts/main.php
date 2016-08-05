@@ -5,6 +5,7 @@ use app\widgets\Menu;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 /* @var $this View */
@@ -38,7 +39,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => 'Het Schalpoen',
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => Url::home(),
         'options' => [
             'class' => 'navbar-inverse navbar-static-top',
         ],
