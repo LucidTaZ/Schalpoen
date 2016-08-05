@@ -20,7 +20,9 @@ use yii\helpers\Inflector;
  * @property integer $created_at
  * @property integer $updated_at
  *
+ * @property string $route
  * @property string $slug
+ * @property string $absolutePreviewUrl Preview image source URL
  * @property bool $isPublished
  *
  * @property Comment[] $comments
@@ -70,6 +72,21 @@ class Post extends ActiveRecord
         ];
     }
 
+    public function getRoute(): string
+    {
+        return '/post/' . $this->id . '/' . $this->slug;
+    }
+
+    public function getSlug(): string
+    {
+        return Inflector::slug($this->title);
+    }
+
+    public function getAbsolutePreviewUrl(): string
+    {
+        return 'http://static.schalpoen.nl/content/previews/' . $this->preview;
+    }
+
     public function getIsPublished(): bool
     {
         return !empty($this->published_at);
@@ -78,11 +95,6 @@ class Post extends ActiveRecord
     public function setIsPublished(bool $value)
     {
         $this->published_at = $value ? time() : null;
-    }
-
-    public function getSlug(): string
-    {
-        return Inflector::slug($this->title);
     }
 
     public function getComments()

@@ -2,11 +2,13 @@
 
 namespace app\controllers;
 
-use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\Post;
+use Yii;
+use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
 
 class SiteController extends Controller
 {
@@ -50,7 +52,14 @@ class SiteController extends Controller
     {
         $this->view->params['description'] = 'First " test';
         $this->view->params['keywords'] = ['Thijs', 'Zumbrink'];
-        return $this->render('index');
+
+        $recentPostsProvider = new ActiveDataProvider([
+            'query' => Post::findRecentlyPublished(),
+        ]);
+
+        return $this->render('index', [
+            'recentPosts' => $recentPostsProvider,
+        ]);
     }
 
     public function actionLogin()
