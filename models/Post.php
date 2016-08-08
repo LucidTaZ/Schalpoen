@@ -24,6 +24,7 @@ use yii\helpers\Inflector;
  * @property string $slug
  * @property string $absolutePreviewUrl Preview image source URL
  * @property bool $isPublished
+ * @property string $firstParagraph
  *
  * @property Comment[] $comments
  * @property User $author
@@ -72,6 +73,11 @@ class Post extends ActiveRecord
         ];
     }
 
+    public function addTag(Tag $tag)
+    {
+        $this->link('tags', $tag);
+    }
+
     public function getRoute(): string
     {
         return '/post/' . $this->id . '/' . $this->slug;
@@ -90,6 +96,15 @@ class Post extends ActiveRecord
     public function getIsPublished(): bool
     {
         return !empty($this->published_at);
+    }
+
+    public function getFirstParagraph(): string
+    {
+        $firstNewlinePosition = strpos($this->text, "\n");
+        if ($firstNewlinePosition === false) {
+            return $this->text;
+        }
+        return substr($this->text, 0, $firstNewlinePosition);
     }
 
     public function setIsPublished(bool $value)

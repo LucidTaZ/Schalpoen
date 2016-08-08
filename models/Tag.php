@@ -11,6 +11,7 @@ use yii\helpers\Inflector;
  * @property integer $id
  * @property string $title
  *
+ * @property string $route
  * @property string $slug
  *
  * @property Post[] $posts
@@ -36,6 +37,11 @@ class Tag extends ActiveRecord
             'id' => 'ID',
             'title' => 'Titel',
         ];
+    }
+
+    public function getRoute(): string
+    {
+        return '/tag/' . $this->id . '/' . $this->slug;
     }
 
     public function getSlug(): string

@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\Inflector;
 use yii\web\IdentityInterface;
 
 /**
@@ -21,6 +22,9 @@ use yii\web\IdentityInterface;
  * @property integer $is_author
  * @property integer $is_publisher
  * @property integer $created_at
+ *
+ * @property string $route
+ * @property string $slug
  *
  * @property Comment[] $comments
  * @property Post[] $posts
@@ -102,6 +106,16 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return null;
+    }
+
+    public function getRoute(): string
+    {
+        return '/user/' . $this->id . '/' . $this->slug;
+    }
+
+    public function getSlug(): string
+    {
+        return Inflector::slug($this->displayName);
     }
 
     public function getComments()
