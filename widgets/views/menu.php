@@ -52,7 +52,7 @@ use yii\web\View;
 <p>
     Recente artikelen:<br />
     <?php foreach ($recentPosts as $recentPost): ?>
-        <?= Html::a($recentPost->title, '/post/' . $recentPost->id . '/' . $recentPost->slug) ?><br />
+        <?= Html::a(Html::encode($recentPost->title), Url::toRoute($recentPost->route)) ?><br />
     <?php endforeach; ?>
 </p>
 
@@ -60,7 +60,7 @@ use yii\web\View;
     Populaire tags:<br />
     <?= implode(', ', array_map(
         function (Tag $tag) {
-            return Html::a($tag->title, '/tag/' . $tag->id . '/' . $tag->slug);
+            return Html::a(Html::encode($tag->title), Url::toRoute($tag->route));
         },
         $popularTags
     )) ?><br />

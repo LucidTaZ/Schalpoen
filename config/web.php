@@ -53,6 +53,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 ['class' => UrlRule::class, 'pattern' => 'post/<id:[\d]+>/<slug:[\-a-zA-Z0-9]+>', 'route' => 'post/view'],
+                ['class' => UrlRule::class, 'pattern' => 'tag/<id:[\d]+>/<slug:[\-a-zA-Z0-9]+>', 'route' => 'tag/view'],
             ],
         ],
     ],

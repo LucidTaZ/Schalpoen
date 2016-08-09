@@ -15,6 +15,7 @@ use yii\helpers\Inflector;
  * @property string $slug
  *
  * @property Post[] $posts
+ * @property Post[] $publishedPosts
  */
 class Tag extends ActiveRecord
 {
@@ -55,21 +56,22 @@ class Tag extends ActiveRecord
             ->viaTable('posttag', ['tag_id' => 'id']);
     }
 
+    public function getPublishedPosts()
+    {
+        return $this->getPosts()
+            ->andOnCondition(['not', ['published_at' => null]]);
+    }
+
     /**
      * @return Tag[]
      */
     public static function getPopularTags(): array
     {
-        // TODO: Implement
-        return [
-            new static([
-                'id' => 2,
-                'title' => 'Debug1',
-            ]),
-            new static([
-                'id' => 3,
-                'title' => 'Debug2',
-            ]),
-        ];
+        return static::find()
+            ->innerJoinWith('publishedPosts')
+            ->groupBy('{{tag}}.[[id]]')
+            ->orderBy(['COUNT({{post}}.[[id]])' => SORT_DESC])
+            ->limit(20)
+            ->all();
     }
 }
