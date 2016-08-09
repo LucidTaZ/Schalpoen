@@ -19,7 +19,6 @@ modules:
 #        - WebDriver
     config:
         PhpBrowser:
-# PLEASE ADJUST IT TO THE ACTUAL ENTRY POINT WITHOUT PATH INFO
             url: http://localhost:1337
 #        WebDriver:
 #            url: http://localhost:8080
