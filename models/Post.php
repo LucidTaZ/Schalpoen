@@ -25,6 +25,8 @@ use yii\helpers\Inflector;
  * @property string $absolutePreviewUrl Preview image source URL
  * @property bool $isPublished
  * @property string $firstParagraph
+ * @property string $parsedFirstParagraph
+ * @property string $parsedText
  *
  * @property Comment[] $comments
  * @property User $author
@@ -105,6 +107,18 @@ class Post extends ActiveRecord
             return $this->text;
         }
         return substr($this->text, 0, $firstNewlinePosition);
+    }
+
+    public function getParsedFirstParagraph(): string
+    {
+        // TODO: Implement
+        return nl2br(\yii\helpers\Html::encode($this->firstParagraph));
+    }
+
+    public function getParsedText(): string
+    {
+        // TODO: Implement
+        return nl2br(\yii\helpers\Html::encode($this->text));
     }
 
     public function setIsPublished(bool $value)

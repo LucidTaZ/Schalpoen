@@ -2,7 +2,6 @@
 
 use app\models\Post;
 use app\models\Tag;
-use app\widgets\LinkButton;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
@@ -11,30 +10,24 @@ use yii\web\View;
 /* @var $model Post */
 
 ?>
-<div class="shortPost contentPane">
-    <div class="shortPostPreview">
+<div class="longPost contentPane">
+    <div class="longPostPreview">
         <?= Html::a(Html::img($model->absolutePreviewUrl), Url::toRoute($model->route)) ?>
     </div>
 
-    <h3><?= Html::a(Html::encode($model->title), Url::toRoute($model->route)) ?></h3>
+    <h2><?= Html::a(Html::encode($model->title), Url::toRoute($model->route)) ?></h2>
 
-    <div class="shortPostText post">
+    <div class="longPostText post">
         <p>
             Door: <?= Html::a(Html::encode($model->author->displayName), Url::toRoute($model->author->route)) ?><br />
             <?= Yii::$app->formatter->asDatetime($model->published_at, 'short') ?>
         </p>
 
         <p>
-            <?= $model->parsedFirstParagraph ?>
+            <?= $model->parsedText ?>
         </p>
 
-        <p>
-            <?= LinkButton::widget([
-                'href' => Url::toRoute($model->route),
-                'icon' => 'book',
-                'caption' => 'Lees verder',
-            ]) ?>
-        </p>
+        <hr />
 
         <p>
             <?= implode(', ', array_map(function (Tag $tag) {
