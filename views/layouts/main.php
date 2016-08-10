@@ -45,13 +45,16 @@ AppAsset::register($this);
         ],
     ]);
     if (Yii::$app->user->isGuest) {
-        $items = [['label' => 'Login', 'url' => ['/site/login']]];
+        $items = [
+            ['label' => 'Inloggen', 'url' => ['/site/login']],
+            ['label' => 'Registreren', 'url' => ['/site/register']],
+        ];
     } else {
         $items = [
             '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Uitloggen (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()

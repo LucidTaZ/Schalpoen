@@ -1,20 +1,19 @@
 <?php
 
-/* @var $this View */
-/* @var $form ActiveForm */
-/* @var $model LoginForm */
-
-use app\models\LoginForm;
+use app\models\RegistrationForm;
 use app\widgets\SubmitButton;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\web\View;
 
-$this->title = 'Inloggen';
+/* @var $this View */
+/* @var $form ActiveForm */
+/* @var $model RegistrationForm */
+
+$this->title = 'Registreren';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="contentPane">
+<div class="site-register contentPane">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -34,20 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'password')->passwordInput() ?>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+        <?= $form->field($model, 'answer')->textInput(['value' => ''])->label($model->question) ?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= SubmitButton::widget(['caption' => 'Inloggen', 'icon' => 'log-in']) ?>
+                <?= SubmitButton::widget(['caption' => 'Registreren', 'icon' => 'log-in']) ?>
             </div>
         </div>
 
     <?php ActiveForm::end(); ?>
-
-    <p>
-        Nog geen account? Registreren is heel makkelijk en kost slechts een paar
-        seconden! <a href="<?= Url::toRoute(['site/register']) ?>">Klik hier!</a>
-    </p>
 </div>

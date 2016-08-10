@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\LoginForm;
 use app\models\Post;
+use app\models\RegistrationForm;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
@@ -73,6 +74,22 @@ class SiteController extends Controller
             return $this->goBack();
         }
         return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionRegister()
+    {
+        if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RegistrationForm();
+        if ($model->load(Yii::$app->request->post()) && $model->createUser()) {
+            return $this->goBack();
+        }
+        $model->chooseRandomQuestion();
+        return $this->render('register', [
             'model' => $model,
         ]);
     }

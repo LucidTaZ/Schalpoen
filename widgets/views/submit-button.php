@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\web\View;
 
 /* @var $this View */
-/* @var $href string */
 /* @var $icon string */
 /* @var $caption string */
 
@@ -15,4 +14,4 @@ if (empty($icon)) {
 }
 
 ?>
-<?= Html::a($iconElement . Html::encode($caption), $href, ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton($iconElement . Html::encode($caption), ['class' => 'btn btn-default']) ?>

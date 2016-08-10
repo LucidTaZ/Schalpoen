@@ -9,7 +9,7 @@ $I->wantTo('ensure that login works');
 
 $loginPage = LoginPage::openBy($I);
 
-$I->see('Login', 'h1');
+$I->see('Inloggen', 'h1');
 
 $I->amGoingTo('try to login with empty credentials');
 $loginPage->login('', '');
