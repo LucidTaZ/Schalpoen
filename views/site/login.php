@@ -15,18 +15,13 @@ $this->title = 'Inloggen';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contentPane">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        Vul je gegevens in om in te loggen:
-    </p>
+    <h2><?= Html::encode($this->title) ?></h2>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-2 control-label'],
+            'template' => "\n<div class=\"col-lg-5\">{label}<br />{input}\n{error}</div>",
         ],
     ]); ?>
 
@@ -35,11 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'password')->passwordInput() ?>
 
         <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+            'template' => "<div class=\"col-lg-5\">{input} {label} {error}</div>\n",
         ]) ?>
 
         <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
+            <div class="col-lg-5">
                 <?= SubmitButton::widget(['caption' => 'Inloggen', 'icon' => 'log-in']) ?>
             </div>
         </div>
