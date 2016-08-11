@@ -66,7 +66,7 @@ class RegistrationForm extends Model
             $user = new User;
             $user->username = $this->username;
             $user->displayName = $this->username;
-            $user->password = Yii::$app->security->generatePasswordHash($this->password);
+            $user->plainPassword = $this->password;
             if (!$user->save()) {
                 $this->addErrors($user->errors); // Copy over errors like username duplicate
                 return false;

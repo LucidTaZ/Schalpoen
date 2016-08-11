@@ -12,14 +12,15 @@ class LoginPage extends BasePage
 {
     public $route = 'site/login';
 
-    /**
-     * @param string $username
-     * @param string $password
-     */
-    public function login($username, $password)
+    public function login(string $username, string $password, bool $rememberMe = false)
     {
         $this->actor->fillField('input[name="LoginForm[username]"]', $username);
         $this->actor->fillField('input[name="LoginForm[password]"]', $password);
+        if ($rememberMe) {
+            $this->actor->checkOption('#loginform-rememberme'); // Have to use the ID, because the name is also a hidden field...
+        } else {
+            $this->actor->uncheckOption('#loginform-rememberme');
+        }
         $this->actor->click('button[type=submit]');
     }
 }

@@ -2,14 +2,10 @@
 
 namespace app\tests\codeception\functional;
 
-use app\models\Post;
-use app\models\Tag;
-use app\models\User;
 use FunctionalTester;
-use LogicException;
 use yii\helpers\Url;
 
-class PostCest
+class PostCest extends IntegrationTest
 {
     public function slugWorks(FunctionalTester $I)
     {
@@ -44,63 +40,5 @@ class PostCest
         } finally {
             $post->delete();
         }
-    }
-
-    private function ensureTestPost(): Post
-    {
-        $author = $this->ensureTestUser();
-        $tags = [
-            $this->ensureTestTag('Testing'),
-            $this->ensureTestTag('Functional Testing'),
-        ];
-
-        $post = new Post;
-        $post->author_id = $author->id;
-        $post->title = 'Functional test ' . time();
-        $post->text = 'Functional test body';
-        $post->isPublished = true;
-        if (!$post->save()) {
-            throw new LogicException('Failed to save test post');
-        }
-
-        foreach ($tags as $tag) {
-            $post->addTag($tag);
-        }
-
-        return $post;
-    }
-
-    private function ensureTestUser(): User
-    {
-        $username = 'Functional tester';
-        $user = User::findOne(['username' => $username]);
-        if ($user !== null) {
-            return $user;
-        }
-
-        $user = new User;
-        $user->username = $username;
-        $user->displayName = $username;
-        $user->email = 'functionaltester@schalpoen.nl';
-        $user->password = 'functionaltester';
-        if (!$user->save()) {
-            throw new LogicException('Failed to save test user');
-        }
-        return $user;
-    }
-
-    private function ensureTestTag(string $title): Tag
-    {
-        $tag = Tag::findOne(['title' => $title]);
-        if ($tag !== null) {
-            return $tag;
-        }
-
-        $tag = new Tag;
-        $tag->title = $title;
-        if (!$tag->save()) {
-            throw new LogicException('Failed to save test tag');
-        }
-        return $tag;
     }
 }

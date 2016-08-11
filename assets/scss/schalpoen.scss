@@ -122,6 +122,8 @@ h3 {
 
     .nav li {
         a, button {
+            padding-top: 15px; // Already standard for a, but via this rule also for button. Otherwise the logout button aligns wrong compared to the links.
+            padding-bottom: 15px;
             color: white;
         }
     }

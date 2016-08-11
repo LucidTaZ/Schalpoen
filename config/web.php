@@ -1,5 +1,7 @@
 <?php
 
+use app\components\BlogUser;
+use app\models\User;
 use lucidtaz\yii2scssphp\ScssAssetConverter;
 use yii\web\UrlRule;
 
@@ -25,7 +27,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => BlogUser::class,
+            'identityClass' => User::class,
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

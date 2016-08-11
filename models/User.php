@@ -25,6 +25,7 @@ use yii\web\IdentityInterface;
  *
  * @property string $route
  * @property string $slug
+ * @property string $plainPassword
  *
  * @property Comment[] $comments
  * @property Post[] $posts
@@ -75,6 +76,17 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->auth_key = Yii::$app->security->generateRandomString();
+            }
+            return true;
+        }
+        return false;
+    }
+
     public static function findByUsername($username)
     {
         return static::findOne(['username' => $username]);
@@ -118,6 +130,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getSlug(): string
     {
         return Inflector::slug($this->displayName);
+    }
+
+    public function setPlainPassword(string $password)
+    {
+        $this->password = Yii::$app->security->generatePasswordHash($password);
     }
 
     public function getComments()
