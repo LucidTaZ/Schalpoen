@@ -306,6 +306,28 @@ h3 {
     padding-top: 0px;
     padding-left: 0px;
     margin-bottom: 1em;
+
+    .shortPostPreview {
+        border: 1px solid $borderColor;
+        float: left;
+        padding: 0px;
+        margin: 10px;
+
+        img {
+            // IE...
+            display: block;
+            margin: 0px;
+        }
+    }
+
+    .shortPostText {
+        // Wrap the text under the image on small devices, otherwise there is a
+        // Whole white column in the screen. On large devices, it's nicer to
+        // align the text to the right of the image
+        @include size(at-least-phone) {
+            margin-left: 140px; // Image is 120px, we add some space
+        }
+    }
 }
 
 .post {
@@ -321,26 +343,9 @@ h3 {
     margin-top: 1em;
 }
 
-.shortPostPreview {
-    border: 1px solid $borderColor;
-    float: left;
-    padding: 0px;
-    margin: 10px;
-
-    img {
-        // IE...
-        display: block;
-        margin: 0px;
-    }
-}
-
 .longPostPreview {
     float: left;
     margin-right: 1em;
-}
-
-.shortPostText {
-    margin-left: 140px;
 }
 
 .archiveYearHeader {
