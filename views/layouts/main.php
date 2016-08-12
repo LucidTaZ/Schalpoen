@@ -1,9 +1,9 @@
 <?php
 
 use app\assets\AppAsset;
+use app\components\BlogNavBar;
 use app\widgets\Menu;
 use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
@@ -37,12 +37,13 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
+    BlogNavBar::begin([
         'brandLabel' => 'Het Schalpoen',
         'brandUrl' => Url::home(),
         'options' => [
             'class' => 'navbar-inverse navbar-static-top',
         ],
+        'collapseSelector' => '.collapse', // Collapse both the navbar and the menu
     ]);
     if (Yii::$app->user->isGuest) {
         $items = [
@@ -65,17 +66,15 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,
     ]);
-    NavBar::end();
+    BlogNavBar::end();
     ?>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div id="menu" class="col-md-3 contentPane">
-                <?= Menu::widget() ?>
-            </div>
-            <div id="content" class="col-md-9">
-                <?= $content ?>
-            </div>
+    <div class="page-container">
+        <div id="menu" class="contentPane collapse">
+            <?= Menu::widget() ?>
+        </div>
+        <div id="content">
+            <?= $content ?>
         </div>
     </div>
 </div>

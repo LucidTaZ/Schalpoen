@@ -16,6 +16,33 @@ $linkHoverColor: #156b23;
     line-height: 1.4;
 }
 
+@mixin size($point) {
+    @if ($point == at-most-large) {
+        @media (max-width: 1200px) { @content; }
+    }
+    @if ($point == at-least-large) {
+        @media (min-width: 1200px) { @content; }
+    }
+    @if ($point == at-most-medium) {
+        @media (max-width: 992px) { @content; }
+    }
+    @if ($point == at-least-medium) {
+        @media (min-width: 992px) { @content; }
+    }
+    @if ($point == at-most-small) {
+        @media (max-width: 768px) { @content; }
+    }
+    @if ($point == at-least-small) {
+        @media (min-width: 768px) { @content; }
+    }
+    @if ($point == at-most-phone) {
+        @media (max-width: 480px) { @content; }
+    }
+    @if ($point == at-least-phone) {
+        @media (min-width: 480px) { @content; }
+    }
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -146,9 +173,34 @@ h3 {
     }
 }
 
+// Container for the menu and content
+.page-container {
+    display: flex;
+    flex-wrap: nowrap;
+    @include size(at-most-medium) {
+        flex-wrap: wrap; // Place content under menu
+    }
+}
+
 #menu {
     border-left: none;
     border-top: none;
+
+    margin-bottom: auto;
+
+    width: 20em;
+    flex-shrink: 0;
+    @include size(at-most-medium) {
+        width: 100%;
+        border-right: none;
+    }
+
+    &.collapse {
+        @include size(at-least-small) {
+            display: block; // Make sure the collapse has no effect unless it's needed
+            height: auto !important; // Otherwise the collapse transition can smallen it via the style attribute, which keeps its effect after enlarging the screen.
+        }
+    }
 
     p {
         margin: 0 0 1em 0;
@@ -157,7 +209,10 @@ h3 {
 
 #content {
     padding: 1em;
-    @media (max-width: 992px) {
+    width: 100%;
+    margin: auto;
+
+    @include size(at-most-medium) {
         // Remove 15px Bootstrap gutter
         padding-left: 0px;
         padding-right: 0px;
