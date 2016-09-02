@@ -29,6 +29,7 @@ use yii\web\IdentityInterface;
  *
  * @property Comment[] $comments
  * @property Post[] $posts
+ * @property Post[] $finalizedUnpublishedPosts
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -145,5 +146,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['author_id' => 'id']);
+    }
+
+    public function getFinalizedPosts()
+    {
+        return $this->getPosts()
+            ->andOnCondition(['status' => [Post::STATUS_FINALIZED]]);
+    }
+
+    public function getEditablePosts()
+    {
+        return $this->getPosts()
+            ->andOnCondition(['status' => [Post::STATUS_DRAFT, Post::STATUS_REJECTED]]);
     }
 }

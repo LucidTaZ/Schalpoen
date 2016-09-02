@@ -30,4 +30,14 @@ class PostTest extends TestCase
         $post->text =  $longText . "\nSecond line";
         $this->assertEquals($longText, $post->firstParagraph);
     }
+
+    public function testSetIsPublished()
+    {
+        $post = new Post;
+        $post->isPublished = true;
+
+        $this->assertEquals(Post::STATUS_PUBLISHED, $post->status);
+        $this->assertNotEmpty($post->published_at);
+        $this->assertTrue($post->isPublished);
+    }
 }

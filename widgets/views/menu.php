@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use yii\web\View;
 
 /* @var $this View */
+/* @var $draftCount int */
 /* @var $recentPosts Post[] */
 /* @var $popularTags Tag[] */
 /* @var $isAuthor bool */
@@ -38,7 +39,11 @@ use yii\web\View;
     <p>
         Auteur:<br />
         <a href="#">Artikel schrijven</a><br />
-        <a href="#">Concepten (x)</a><br />
+        <?php if ($draftCount == 0): ?>
+            <a href="<?= Url::toRoute(['/author/drafts']) ?>">Concepten</a><br />
+        <?php else: ?>
+            <a href="<?= Url::toRoute(['/author/drafts']) ?>">Concepten (<?= Html::encode($draftCount) ?>)</a><br />
+        <?php endif; ?>
     </p>
 <?php endif; ?>
 

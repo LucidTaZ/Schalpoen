@@ -34,6 +34,11 @@ use yii\helpers\Inflector;
  */
 class Post extends ActiveRecord
 {
+    const STATUS_DRAFT = 'draft';
+    const STATUS_FINALIZED = 'finalized';
+    const STATUS_REJECTED = 'rejected';
+    const STATUS_PUBLISHED = 'published';
+
     public static function tableName()
     {
         return 'post';
@@ -97,7 +102,7 @@ class Post extends ActiveRecord
 
     public function getIsPublished(): bool
     {
-        return !empty($this->published_at);
+        return $this->status == self::STATUS_PUBLISHED;
     }
 
     public function getFirstParagraph(): string
@@ -123,6 +128,7 @@ class Post extends ActiveRecord
 
     public function setIsPublished(bool $value)
     {
+        $this->status = self::STATUS_PUBLISHED;
         $this->published_at = $value ? time() : null;
     }
 
@@ -148,7 +154,7 @@ class Post extends ActiveRecord
     public static function findRecentlyPublished()
     {
         return static::find()
-            ->where(['not', ['published_at' => null]])
+            ->where(['status' => self::STATUS_PUBLISHED])
             ->orderBy(['published_at' => SORT_DESC]);
     }
 }
