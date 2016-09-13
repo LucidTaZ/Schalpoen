@@ -12,7 +12,9 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "leafo/scssphp": "^0.6.3",
-        "lucidtaz/yii2-scssphp": "^0.1.0"
+        "lucidtaz/yii2-scssphp": "^0.1.0",
+        "lucidtaz/analytics": "dev-master",
+        "lucidtaz/yii2-analytics": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

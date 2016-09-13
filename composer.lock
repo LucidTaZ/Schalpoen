@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "be7c3dd2943bf9ee293f1ff0612ac706",
-    "content-hash": "b191883836da135bf1f5db20557584eb",
+    "hash": "d53414322747fa957935e0380898766e",
+    "content-hash": "c0feba8a1554b60934bd7ff666db4dc4",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -351,6 +351,86 @@
                 "stylesheet"
             ],
             "time": "2016-01-15 02:50:06"
+        },
+        {
+            "name": "lucidtaz/analytics",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LucidTaZ/Analytics.git",
+                "reference": "e0a039795adaf5b0446741f40dc73e4427d8b526"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LucidTaZ/Analytics/zipball/e0a039795adaf5b0446741f40dc73e4427d8b526",
+                "reference": "e0a039795adaf5b0446741f40dc73e4427d8b526",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "lucidtaz\\analytics\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thijs Zumbrink",
+                    "email": "thijs@schalpoen.nl"
+                }
+            ],
+            "description": "Server-side analytics tool",
+            "time": "2016-09-12 14:32:57"
+        },
+        {
+            "name": "lucidtaz/yii2-analytics",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LucidTaZ/Yii2-Analytics.git",
+                "reference": "db06e5d9837a42dd828290fc548a45816b2706c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LucidTaZ/Yii2-Analytics/zipball/db06e5d9837a42dd828290fc548a45816b2706c8",
+                "reference": "db06e5d9837a42dd828290fc548a45816b2706c8",
+                "shasum": ""
+            },
+            "require": {
+                "lucidtaz/analytics": "dev-master",
+                "php": ">=7.0.0",
+                "yiisoft/yii2": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "lucidtaz\\analytics\\yii2\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thijs Zumbrink",
+                    "email": "thijs@schalpoen.nl"
+                }
+            ],
+            "description": "Yii2 bindings for lucidtaz/analytics",
+            "time": "2016-09-13 18:06:12"
         },
         {
             "name": "lucidtaz/yii2-scssphp",
@@ -2966,7 +3046,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lucidtaz/analytics": 20,
+        "lucidtaz/yii2-analytics": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -3,14 +3,16 @@
 use app\components\BlogUser;
 use app\models\User;
 use lucidtaz\yii2scssphp\ScssAssetConverter;
+use yii\helpers\ArrayHelper;
 use yii\web\UrlRule;
 
 $params = require(__DIR__ . '/params.php');
+$db = require(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'analytics'],
     'language' => 'nl-NL',
     'components' => [
         'assetManager' => [
@@ -50,7 +52,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
+        'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -63,6 +65,14 @@ $config = [
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'analytics' => [
+            'class' => 'lucidtaz\analytics\yii2\Module',
+            'db' => ArrayHelper::merge($db, [
+                'tablePrefix' => 'analytics_',
+            ]),
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {

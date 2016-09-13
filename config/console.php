@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\ArrayHelper;
+
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
 
@@ -23,6 +25,14 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
+    'modules' => [
+        'analytics' => [
+            'class' => 'lucidtaz\analytics\yii2\Module',
+            'db' => ArrayHelper::merge($db, [
+                'tablePrefix' => 'analytics_',
+            ]),
+        ],
+    ],
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
