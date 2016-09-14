@@ -397,12 +397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LucidTaZ/Yii2-Analytics.git",
-                "reference": "db06e5d9837a42dd828290fc548a45816b2706c8"
+                "reference": "946168e0a91fcf58155b10f5ec32d7246547e5b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LucidTaZ/Yii2-Analytics/zipball/db06e5d9837a42dd828290fc548a45816b2706c8",
-                "reference": "db06e5d9837a42dd828290fc548a45816b2706c8",
+                "url": "https://api.github.com/repos/LucidTaZ/Yii2-Analytics/zipball/946168e0a91fcf58155b10f5ec32d7246547e5b0",
+                "reference": "946168e0a91fcf58155b10f5ec32d7246547e5b0",
                 "shasum": ""
             },
             "require": {
@@ -430,7 +430,7 @@
                 }
             ],
             "description": "Yii2 bindings for lucidtaz/analytics",
-            "time": "2016-09-13 18:06:12"
+            "time": "2016-09-14 15:33:02"
         },
         {
             "name": "lucidtaz/yii2-scssphp",
