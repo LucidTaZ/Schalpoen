@@ -15,9 +15,12 @@ class m160425_195915_create_table_comment extends Migration
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer(),
         ]);
-        $this->addForeignKey('fk_comment_post', 'comment', 'post_id', 'post', 'id');
-        $this->addForeignKey('fk_comment_user', 'comment', 'author_id', 'user', 'id');
-        $this->addForeignKey('fk_commentparent', 'comment', 'parent_id', 'comment', 'id');
+        if (!($this->db->schema instanceof \yii\db\sqlite\Schema)) {
+            // Yii's SQLite schema has no support for FKs
+            $this->addForeignKey('fk_comment_post', 'comment', 'post_id', 'post', 'id');
+            $this->addForeignKey('fk_comment_user', 'comment', 'author_id', 'user', 'id');
+            $this->addForeignKey('fk_commentparent', 'comment', 'parent_id', 'comment', 'id');
+        }
     }
 
     public function down()

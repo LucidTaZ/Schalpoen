@@ -1,11 +1,11 @@
 <?php
 
-namespace app\tests\codeception\unit\views\post;
+namespace tests\unit\views\post;
 
 use app\models\Post;
 use app\models\User;
+use tests\unit\TestCase;
 use yii\base\ViewContextInterface;
-use yii\codeception\TestCase;
 use yii\web\View;
 
 class ShortPostTest extends TestCase implements ViewContextInterface

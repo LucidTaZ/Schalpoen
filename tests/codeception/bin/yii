@@ -10,11 +10,6 @@
 
 require_once __DIR__ . '/_bootstrap.php';
 
-$config = yii\helpers\ArrayHelper::merge(
-    require(YII_APP_BASE_PATH . '/config/console.php'),
-    require(__DIR__ . '/../config/config.php')
-);
-
-$application = new yii\console\Application($config);
+$application = new yii\console\Application(require(dirname(__DIR__) . '/config/console.php'));
 $exitCode = $application->run();
 exit($exitCode);

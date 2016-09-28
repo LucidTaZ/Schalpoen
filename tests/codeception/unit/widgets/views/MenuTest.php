@@ -1,9 +1,9 @@
 <?php
 
-namespace app\tests\codeception\unit\widgets\views;
+namespace tests\unit\widgets\views;
 
+use tests\unit\TestCase;
 use yii\base\ViewContextInterface;
-use yii\codeception\TestCase;
 use yii\web\View;
 
 class MenuTest extends TestCase implements ViewContextInterface

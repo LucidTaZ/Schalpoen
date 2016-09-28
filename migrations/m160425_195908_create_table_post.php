@@ -17,7 +17,10 @@ class m160425_195908_create_table_post extends Migration
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer(),
         ]);
-        $this->addForeignKey('fk_post_user', 'post', 'author_id', 'user', 'id');
+        if (!($this->db->schema instanceof \yii\db\sqlite\Schema)) {
+            // Yii's SQLite schema has no support for FKs
+            $this->addForeignKey('fk_post_user', 'post', 'author_id', 'user', 'id');
+        }
     }
 
     public function down()

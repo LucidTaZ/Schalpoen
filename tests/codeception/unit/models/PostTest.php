@@ -3,7 +3,7 @@
 namespace app\tests\codeception\unit\models;
 
 use app\models\Post;
-use yii\codeception\TestCase;
+use tests\unit\TestCase;
 
 class PostTest extends TestCase
 {

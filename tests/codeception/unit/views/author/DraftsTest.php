@@ -1,11 +1,11 @@
 <?php
 
-namespace app\tests\codeception\unit\views\author;
+namespace tests\unit\views\author;
 
 use app\models\Post;
 use Codeception\Specify;
+use tests\unit\TestCase;
 use yii\base\ViewContextInterface;
-use yii\codeception\TestCase;
 use yii\data\ArrayDataProvider;
 use yii\web\View;
 

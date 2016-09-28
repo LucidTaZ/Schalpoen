@@ -20,6 +20,9 @@ return yii\helpers\ArrayHelper::merge(
                 ],
                 */
             ],
+            'db' => [
+                'dsn' => 'sqlite:@runtime/integration.db',
+            ],
         ],
     ]
 );

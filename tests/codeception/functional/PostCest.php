@@ -1,6 +1,6 @@
 <?php
 
-namespace app\tests\codeception\functional;
+namespace tests\functional;
 
 use FunctionalTester;
 use yii\helpers\Url;

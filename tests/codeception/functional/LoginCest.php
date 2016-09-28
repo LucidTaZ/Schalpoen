@@ -1,10 +1,10 @@
 <?php
 
-namespace app\tests\codeception\functional;
+namespace tests\functional;
 
 use Codeception\Scenario;
 use FunctionalTester;
-use tests\codeception\_pages\LoginPage;
+use tests\_pages\LoginPage;
 use Yii;
 use function GuzzleHttp\json_encode;
 
