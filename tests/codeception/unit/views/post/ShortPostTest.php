@@ -6,19 +6,12 @@ use app\models\Post;
 use app\models\User;
 use tests\unit\TestCase;
 use yii\base\ViewContextInterface;
-use yii\web\View;
 
 class ShortPostTest extends TestCase implements ViewContextInterface
 {
     public function getViewPath()
     {
         return '@app/views/post';
-    }
-
-    private function render(string $template, array $params = []): string
-    {
-        $view = new View;
-        return $view->render($template, $params, $this);
     }
 
     public function testFirstParagraph()

@@ -7,7 +7,6 @@ use Codeception\Specify;
 use tests\unit\TestCase;
 use yii\base\ViewContextInterface;
 use yii\data\ArrayDataProvider;
-use yii\web\View;
 
 class DraftsTest extends TestCase implements ViewContextInterface
 {
@@ -16,12 +15,6 @@ class DraftsTest extends TestCase implements ViewContextInterface
     public function getViewPath()
     {
         return '@app/views/author';
-    }
-
-    private function render(string $template, array $params = []): string
-    {
-        $view = new View;
-        return $view->render($template, $params, $this);
     }
 
     public function testNotificationOnNoPosts()
