@@ -31,8 +31,11 @@ $config = [
             'identityClass' => User::class,
             'enableAutoLogin' => true,
         ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
+        'errorHandler' => YII_ENV_DEV && YII_DEBUG ? [
+            'class' => 'lucidtaz\yii2whoops\ErrorHandler',
+        ] : [
+            'class' => 'yii\web\ErrorHandler',
+            'errorAction' => 'site/error'
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
